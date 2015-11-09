@@ -10,7 +10,14 @@
 var dataSet = [
     { "facode":"\uf021", "position":1, "name":"CTE" },
     { "facode":"\uf085", "position":2, "name":"PS"},
-    { "facode":"\uf0ac", "position":3, "name":"HSD" }
+    { "facode":"\uf0ac", "position":3, "name":"HSD" },
+    { "facode":"\uf013", "position":4, "name":"PISP" },
+    { "facode":"\uf013", "position":5, "name":"BAAC" },
+    { "facode":"\uf21b", "position":6, "name":"FC" },
+    { "facode":"\uf025", "position":7, "name":"CS" },
+    { "facode":"\uf023", "position":8, "name":"INC" },
+    { "facode":"\uf192", "position":9, "name":"CAAP" },
+    { "facode":"\uf218", "position":10, "name":"OMS" }
 ];
 
 var margin = {top: 20, right: 20, bottom: 30, left:40},
@@ -76,6 +83,7 @@ gradient.append("svg:stop")
 // Create the SVG g element
 
 var iconContainer = svgContainer.append("g");
+var hexagonContainer = svgContainer.append("g");
 
 // Create the circle and group it in the g element
 
@@ -85,7 +93,42 @@ var iconCircle = iconContainer.selectAll("circle")
     .attr("cx", function(d) { return d.position * 55 })
     .attr("cy", "100")
     .attr("r", "23")
-    .attr("fill", "url(#gradient)");
+    .attr("fill", "url(#gradient)")
+    .attr("stroke", "#11b0d1")
+    .attr("stroke-width", "3");
+
+var hexContainer = hexagonContainer.selectAll("path")
+    .data(dataSet)
+    .enter().append("path")
+    .attr("transform", function(d) { return "translate(" + d.position * 55 + ",200)" })
+    .attr("d", "M-21.2-12.3L0-24.5l21.2,12.3v24.5L0,24.5l-21.2-12.3V-12.3z")
+    .attr("fill", "url(#gradient)")
+    .attr("stroke", "#11b0d1")
+    .attr("stroke-width", "3");
+
+    hexagonContainer.selectAll("text")
+        .data(dataSet)
+        .enter().append("text")
+        .attr("x", function(d) { return d.position * 55 })
+        .attr("y", "200")
+        .attr("font-size", "1.7em")
+        .attr("font-family", "FontAwesome")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#6c6c6c")
+        .text(function(d) {  return d.facode });
+
+    hexagonContainer.selectAll("text.name")
+        .data(dataSet)
+        .enter().append("text")
+        .attr("x", function(d) { return d.position * 55 })
+        .attr("y", "245")
+        .attr("font-size", ".900em")
+        .attr("font-family", "FontAwesome")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#6c6c6c")
+        .text(function(d) {  return d.name });
 
 // Create the FontAwesome text and group it in the g element
 
@@ -114,3 +157,46 @@ iconContainer.selectAll("text.name")
     .attr("fill", "#6c6c6c")
     .text(function(d) { return d.name });
 
+    d3.select("#red")
+        .on("click", function() {
+            d3.selectAll("path")
+                .attr("stroke", "#e42222")
+                .attr("stroke-width", "3");
+
+            d3.selectAll("circle")
+                .attr("stroke", "#e42222")
+                .attr("stroke-width", "3")
+        });
+
+    d3.select("#green")
+        .on("click", function() {
+            d3.selectAll("path")
+                .attr("stroke", "#24a203")
+                .attr("stroke-width", "3");
+
+            d3.selectAll("circle")
+                .attr("stroke", "#24a203")
+                .attr("stroke-width", "3")
+        });
+
+    d3.select("#orange")
+        .on("click", function() {
+            d3.selectAll("path")
+                .attr("stroke", "#f07100")
+                .attr("stroke-width", "3");
+
+            d3.selectAll("circle")
+                .attr("stroke", "#f07100")
+                .attr("stroke-width", "3")
+        });
+
+    d3.select("#blue")
+        .on("click", function() {
+            d3.selectAll("path")
+                .attr("stroke", "#11b0d1")
+                .attr("stroke-width", "3");
+
+            d3.selectAll("circle")
+                .attr("stroke", "#11b0d1")
+                .attr("stroke-width", "3")
+        });
