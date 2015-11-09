@@ -11,15 +11,48 @@ var dataSet = [
     { "facode":"\uf021", "position":1, "name":"CTE" },
     { "facode":"\uf085", "position":2, "name":"PS"},
     { "facode":"\uf0ac", "position":3, "name":"HSD" }
-]
+];
 
-var width = 800,
-    height = 400;
+var margin = {top: 20, right: 20, bottom: 30, left:40},
+    ww = document.getElementById("svg-container").clientWidth,
+    width = ww - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .domain([0, 300])
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .domain([0, 100])
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+// Create the SVG Container.
 
 var svgContainer = d3.select("#svg-container")
     .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+
+    svgContainer.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svgContainer.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+// Create the linear gradient.
 
 var gradient = svgContainer.append("svg:defs")
     .append("svg:linearGradient")
@@ -28,7 +61,7 @@ var gradient = svgContainer.append("svg:defs")
     .attr("y1", "0%")
     .attr("x2", "100%")
     .attr("y2", "100%")
-    .attr("spreadMethod", "pad")
+    .attr("spreadMethod", "pad");
 
 gradient.append("svg:stop")
     .attr("offset", "0%")
@@ -40,7 +73,11 @@ gradient.append("svg:stop")
     .attr("stop-color", "#dadada")
     .attr("stop-opacity", "1");
 
+// Create the SVG g element
+
 var iconContainer = svgContainer.append("g");
+
+// Create the circle and group it in the g element
 
 var iconCircle = iconContainer.selectAll("circle")
     .data(dataSet)
@@ -49,6 +86,8 @@ var iconCircle = iconContainer.selectAll("circle")
     .attr("cy", "100")
     .attr("r", "23")
     .attr("fill", "url(#gradient)");
+
+// Create the FontAwesome text and group it in the g element
 
 iconContainer.selectAll('text')
     .data(dataSet)
@@ -62,11 +101,13 @@ iconContainer.selectAll('text')
     .attr("fill", "#6c6c6c")
     .text(function(d) {  return d.facode });
 
+// Create the text and group it in the g element
+
 iconContainer.selectAll("text.name")
     .data(dataSet)
     .enter().append("text")
     .attr("font-size", ".900em")
-    .attr("font-family", "verdana")
+    .attr("font-family", "Open Sans")
     .attr("x", function(d) { return d.position * 55 })
     .attr("y", "145")
     .attr("text-anchor", "middle")
