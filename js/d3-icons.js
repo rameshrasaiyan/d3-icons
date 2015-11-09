@@ -11,17 +11,46 @@ var dataSet = [
     { "facode":"\uf021", "position":1, "name":"CTE" },
     { "facode":"\uf085", "position":2, "name":"PS"},
     { "facode":"\uf0ac", "position":3, "name":"HSD" }
-]
+];
 
-var width = 800,
-    height = 400;
+var margin = {top: 20, right: 20, bottom: 30, left:40},
+    ww = document.getElementById("svg-container").clientWidth,
+    width = ww - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .domain([0, 300])
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .domain([0, 100])
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
 
 // Create the SVG Container.
 
 var svgContainer = d3.select("#svg-container")
     .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+
+    svgContainer.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svgContainer.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
 // Create the linear gradient.
 
@@ -78,7 +107,7 @@ iconContainer.selectAll("text.name")
     .data(dataSet)
     .enter().append("text")
     .attr("font-size", ".900em")
-    .attr("font-family", "verdana")
+    .attr("font-family", "Open Sans")
     .attr("x", function(d) { return d.position * 55 })
     .attr("y", "145")
     .attr("text-anchor", "middle")

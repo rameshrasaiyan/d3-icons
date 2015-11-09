@@ -1,7 +1,24 @@
 @import "compass/reset";
 @import "compass";
 
+svg {
+    @include background-image(linear-gradient(to bottom right, white, #dddddd));
+}
+
 circle {
     stroke: #11b0d1;
     stroke-width: 3;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #6E8A17;
+    stroke-width: 0.5;
+}
+
+.axis text {
+    font-size: .800em;
+    fill: #6E8A17;
+    font-family: 'Open Sans', sans-serif;
 }
