@@ -132,30 +132,38 @@ var hexContainer = hexagonContainer.selectAll("path")
 
 // Create the FontAwesome text and group it in the g element
 
-iconContainer.selectAll('text')
-    .data(dataSet)
-    .enter().append("text")
-    .attr("font-size", "1.7em")
-    .attr("font-family", "FontAwesome")
-    .attr("x", function(d) { return d.position * 55 })
-    .attr("y", "100")
-    .attr("dy", ".35em")
-    .attr("text-anchor", "middle")
-    .attr("fill", "#6c6c6c")
-    .text(function(d) {  return d.facode });
+    iconContainer.selectAll('text')
+        .data(dataSet)
+        .enter().append("text")
+        .attr("font-size", "1.7em")
+        .attr("font-family", "FontAwesome")
+        .attr("x", function(d) { return d.position * 55 })
+        .attr("y", "100")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#6c6c6c")
+        .text(function(d) {  return d.facode });
 
-// Create the text and group it in the g element
+    // Create the text and group it in the g element
 
-iconContainer.selectAll("text.name")
-    .data(dataSet)
-    .enter().append("text")
-    .attr("font-size", ".900em")
-    .attr("font-family", "Open Sans")
-    .attr("x", function(d) { return d.position * 55 })
-    .attr("y", "145")
-    .attr("text-anchor", "middle")
-    .attr("fill", "#6c6c6c")
-    .text(function(d) { return d.name });
+    iconContainer.selectAll("text.name")
+        .data(dataSet)
+        .enter().append("text")
+        .attr("font-size", ".900em")
+        .attr("font-family", "Open Sans")
+        .attr("x", function(d) { return d.position * 55 })
+        .attr("y", "145")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#6c6c6c")
+        .text(function(d) { return d.name });
+
+    svgContainer.append("text")
+        .attr("font-size", ".900em")
+        .attr("font-family", "Open Sans")
+        .attr("x", "460")
+        .attr("y", "57")
+        .attr("id", "color-code")
+        .text("#e42222");
 
     d3.select("#red")
         .on("click", function() {
@@ -165,7 +173,10 @@ iconContainer.selectAll("text.name")
 
             d3.selectAll("circle")
                 .attr("stroke", "#e42222")
-                .attr("stroke-width", "3")
+                .attr("stroke-width", "3");
+
+            d3.select("text#color-code")
+                .text("#e42222");
         });
 
     d3.select("#green")
@@ -176,7 +187,10 @@ iconContainer.selectAll("text.name")
 
             d3.selectAll("circle")
                 .attr("stroke", "#24a203")
-                .attr("stroke-width", "3")
+                .attr("stroke-width", "3");
+
+            d3.select("text#color-code")
+                .text("#24a203");
         });
 
     d3.select("#orange")
@@ -187,7 +201,10 @@ iconContainer.selectAll("text.name")
 
             d3.selectAll("circle")
                 .attr("stroke", "#f07100")
-                .attr("stroke-width", "3")
+                .attr("stroke-width", "3");
+
+            d3.select("text#color-code")
+                .text("#f07100");
         });
 
     d3.select("#blue")
@@ -198,5 +215,22 @@ iconContainer.selectAll("text.name")
 
             d3.selectAll("circle")
                 .attr("stroke", "#11b0d1")
-                .attr("stroke-width", "3")
+                .attr("stroke-width", "3");
+
+            d3.select("text#color-code")
+                .text("#11b0d1");
+        });
+
+    d3.select("#gray")
+        .on("click", function() {
+            d3.selectAll("path")
+                .attr("stroke", "#b8b8b8")
+                .attr("stroke-width", "3");
+
+            d3.selectAll("circle")
+                .attr("stroke", "#b8b8b8")
+                .attr("stroke-width", "3");
+
+            d3.select("text#color-code")
+                .text("#b8b8b8");
         });
