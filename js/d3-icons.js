@@ -176,6 +176,7 @@ var hexContainer = hexagonContainer.selectAll("path")
                 .attr("stroke-width", "3");
 
             d3.select("text#color-code")
+                .attr("fill", "#e42222")
                 .text("#e42222");
         });
 
@@ -190,6 +191,7 @@ var hexContainer = hexagonContainer.selectAll("path")
                 .attr("stroke-width", "3");
 
             d3.select("text#color-code")
+                .attr("fill", "#24a203")
                 .text("#24a203");
         });
 
@@ -204,6 +206,7 @@ var hexContainer = hexagonContainer.selectAll("path")
                 .attr("stroke-width", "3");
 
             d3.select("text#color-code")
+                .attr("fill", "#f07100")
                 .text("#f07100");
         });
 
@@ -218,6 +221,7 @@ var hexContainer = hexagonContainer.selectAll("path")
                 .attr("stroke-width", "3");
 
             d3.select("text#color-code")
+                .attr("fill", "#11b0d1")
                 .text("#11b0d1");
         });
 
@@ -232,5 +236,6 @@ var hexContainer = hexagonContainer.selectAll("path")
                 .attr("stroke-width", "3");
 
             d3.select("text#color-code")
+                .attr("fill", "#b8b8b8")
                 .text("#b8b8b8");
         });
