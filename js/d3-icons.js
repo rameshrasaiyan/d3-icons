@@ -165,77 +165,80 @@ var hexContainer = hexagonContainer.selectAll("path")
         .attr("id", "color-code")
         .text("#e42222");
 
-    d3.select("#red")
-        .on("click", function() {
-            d3.selectAll("path")
-                .attr("stroke", "#e42222")
-                .attr("stroke-width", "3");
+    function colorChange(color) {
+        switch (color) {
+            case "red" :
+                d3.selectAll("path")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#e42222");
 
-            d3.selectAll("circle")
-                .attr("stroke", "#e42222")
-                .attr("stroke-width", "3");
+                d3.selectAll("circle")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#e42222");
 
-            d3.select("text#color-code")
-                .attr("fill", "#e42222")
-                .text("#e42222");
-        });
+                d3.select("text#color-code")
+                    .transition().duration(250).delay(100)
+                    .attr("fill", "#e42222")
+                    .text("#e42222");
+                break;
+            case ("orange") :
+                d3.selectAll("path")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#f07100");
 
-    d3.select("#green")
-        .on("click", function() {
-            d3.selectAll("path")
-                .attr("stroke", "#24a203")
-                .attr("stroke-width", "3");
+                d3.selectAll("circle")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#f07100");
 
-            d3.selectAll("circle")
-                .attr("stroke", "#24a203")
-                .attr("stroke-width", "3");
+                d3.select("text#color-code")
+                    .transition().duration(250).delay(100)
+                    .attr("fill", "#f07100")
+                    .text("#f07100");
+                break;
+            case ("green") :
+                d3.selectAll("path")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#24a203");
 
-            d3.select("text#color-code")
-                .attr("fill", "#24a203")
-                .text("#24a203");
-        });
+                d3.selectAll("circle")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#24a203");
 
-    d3.select("#orange")
-        .on("click", function() {
-            d3.selectAll("path")
-                .attr("stroke", "#f07100")
-                .attr("stroke-width", "3");
+                d3.select("text#color-code")
+                    .transition().duration(250).delay(100)
+                    .attr("fill", "#24a203")
+                    .text("#24a203");
+                break;
+            case ("blue") :
+                d3.selectAll("path")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#11b0d1");
 
-            d3.selectAll("circle")
-                .attr("stroke", "#f07100")
-                .attr("stroke-width", "3");
+                d3.selectAll("circle")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#11b0d1");
 
-            d3.select("text#color-code")
-                .attr("fill", "#f07100")
-                .text("#f07100");
-        });
+                d3.select("text#color-code")
+                    .transition().duration(250).delay(100)
+                    .attr("fill", "#11b0d1")
+                    .text("#11b0d1");
+                break;
+            case ("gray") :
+                d3.selectAll("path")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#b8b8b8");
 
-    d3.select("#blue")
-        .on("click", function() {
-            d3.selectAll("path")
-                .attr("stroke", "#11b0d1")
-                .attr("stroke-width", "3");
+                d3.selectAll("circle")
+                    .transition().duration(250).delay(100)
+                    .attr("stroke", "#b8b8b8");
 
-            d3.selectAll("circle")
-                .attr("stroke", "#11b0d1")
-                .attr("stroke-width", "3");
-
-            d3.select("text#color-code")
-                .attr("fill", "#11b0d1")
-                .text("#11b0d1");
-        });
-
-    d3.select("#gray")
-        .on("click", function() {
-            d3.selectAll("path")
-                .attr("stroke", "#b8b8b8")
-                .attr("stroke-width", "3");
-
-            d3.selectAll("circle")
-                .attr("stroke", "#b8b8b8")
-                .attr("stroke-width", "3");
-
-            d3.select("text#color-code")
-                .attr("fill", "#b8b8b8")
-                .text("#b8b8b8");
-        });
+                d3.select("text#color-code")
+                    .transition().duration(250).delay(100)
+                    .attr("fill", "#b8b8b8")
+                    .text("#b8b8b8");
+                break;
+            default:
+                d3.selectAll("path")
+                    .attr("stroke", "#11b0d1");
+        }
+    }
