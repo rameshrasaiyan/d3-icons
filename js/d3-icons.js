@@ -17,7 +17,8 @@ var dataSet = [
     { "facode":"\uf025", "position":7, "name":"CS" },
     { "facode":"\uf023", "position":8, "name":"INC" },
     { "facode":"\uf192", "position":9, "name":"CAAP" },
-    { "facode":"\uf218", "position":10, "name":"OMS" }
+    { "facode":"\uf218", "position":10, "name":"OMS" },
+    { "facode":"\uf1b6", "position":11, "name":"TPP" }
 ];
 
 var margin = {top: 20, right: 20, bottom: 30, left:40},
